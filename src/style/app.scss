@@ -1,1 +1,12 @@
 @import "_colors.scss";
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+body {
+    background-color: $main-bg-color;
+    color: $main-txt-color;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.custom-container {
+    padding: 0 15px;
+}

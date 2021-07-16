@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <Main />
+    {{results}}
   </div>
 </template>
 
@@ -14,7 +15,8 @@ export default {
   components: {
     Header,
     Main
-  }
+  },
+  
 }
 </script>
 
