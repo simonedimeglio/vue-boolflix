@@ -1,15 +1,18 @@
 <template>
     <div class="card">
         <div class="poster-container">
-            <!-- <img :src="img" /> -->
+            
+            <!-- <img :src="require('https://image.tmdb.org/t/p' + this.img)" alt="Language"> -->
+            
         </div>
         <div class="info">
             <div class="card-title">Titolo: {{title}}</div>
             <div class="card-original-title">Titolo originale: {{originalTitle}}</div>
-            <div class="card-language">Lingua: <span><img class="flag" :src="'../assets/flags/' + this.language + '.svg'" alt="Language"></span></div>
-                
-              
-
+            <div class="card-language">Lingua: 
+                <span>
+                    <img class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
+                </span>
+            </div>
             <div class="card-rating">Voto: {{rating}}</div>
         </div>
     </div>
@@ -27,7 +30,7 @@ export default {
     },
     data() {
         return {
-            flags: ['fr', 'en', 'it', 'es']
+            
         }
     }
 }
@@ -58,11 +61,19 @@ export default {
         height: 450px;
     }
     .info {
-            display: block;
+            display: none;
             font-size: 12px;
             padding: 10px;
             position: relative;
             bottom: 50%;
+            .card-language {
+                display: flex;
+                align-items: center;
+                .language-flag {
+                    margin-left: 10px;
+                    width: 20px;
+                }
+            }
         }
 }
 </style>
