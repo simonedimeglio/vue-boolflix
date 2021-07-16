@@ -6,7 +6,10 @@
         <div class="info">
             <div class="card-title">Titolo: {{title}}</div>
             <div class="card-original-title">Titolo originale: {{originalTitle}}</div>
-            <div class="card-language">Lingua: {{language}}</div>
+            <div class="card-language">Lingua: <span><img class="flag" :src="'../assets/flags/' + this.language + '.svg'" alt="Language"></span></div>
+                
+              
+
             <div class="card-rating">Voto: {{rating}}</div>
         </div>
     </div>
@@ -21,6 +24,11 @@ export default {
         originalTitle: String,
         language: String,
         rating: Number,
+    },
+    data() {
+        return {
+            flags: ['fr', 'en', 'it', 'es']
+        }
     }
 }
 </script>
@@ -50,7 +58,7 @@ export default {
         height: 450px;
     }
     .info {
-            display: none;
+            display: block;
             font-size: 12px;
             padding: 10px;
             position: relative;
