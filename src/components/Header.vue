@@ -13,8 +13,8 @@
                 </ul>
             </div>
             <div class="header-options">
-                <input type="text" placeholder="Search">
-                <button>Search</button>
+                <input type="text" placeholder="Ricerca titolo">
+                <font-awesome-icon icon="search" class="button-icon"/>
             </div>
         </div>
     </header>
@@ -54,6 +54,20 @@ header {
             }
         }
         .header-options {
+            input {
+                background-color: black;
+                border-style: none;
+                color: white;
+                border-bottom: .5px solid #e4e4e4;
+            }
+            .button-icon {
+                margin-left: 10px;
+                color: #e4e4e4;
+                &:hover {
+                    color: white;
+                    cursor: pointer;
+                }
+            }
             
         }
     }

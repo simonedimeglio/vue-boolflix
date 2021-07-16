@@ -31,6 +31,11 @@ export default {
             display: block;
             opacity: 1;
         }
+    &:hover .poster-container{
+            opacity: 0.5;
+            transition: 0.5s;
+        }
+
     .poster-container {
         position: relative;
         display: flex;
@@ -41,10 +46,6 @@ export default {
         background-size: cover;
         width: 100%;
         height: 450px;
-        &:hover {
-            opacity: 0.5;
-            transition: 0.5s;
-        }
     }
     .info {
             display: none;
