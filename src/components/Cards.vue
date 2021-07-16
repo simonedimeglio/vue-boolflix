@@ -1,9 +1,8 @@
 <template>
     <div class="card">
         <div class="poster-container">
-            
-            <!-- <img :src="require('https://image.tmdb.org/t/p' + this.img)" alt="Language"> -->
-            
+            <img v-if="this.img !=null" :src="'https://image.tmdb.org/t/p/w342/' + this.img" :alt="this.title + ' poster'">
+            <img v-else src="../assets/notfound.jpg" :alt="this.title + ' poster'">
         </div>
         <div class="info">
             <div class="card-title">Titolo: {{title}}</div>
@@ -28,11 +27,6 @@ export default {
         language: String,
         rating: Number,
     },
-    data() {
-        return {
-            
-        }
-    }
 }
 </script>
 
@@ -46,7 +40,7 @@ export default {
             opacity: 1;
         }
     &:hover .poster-container{
-            opacity: 0.5;
+            opacity: 0.2;
             transition: 0.5s;
         }
     .poster-container {
@@ -55,10 +49,12 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-image: url('https://image.tmdb.org/t/p/w342/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg');
-        background-size: cover;
         width: 100%;
         height: 450px;
+        img {
+            height: 450px;
+            width: 100%;
+        }
     }
     .info {
             display: none;
@@ -74,6 +70,6 @@ export default {
                     width: 20px;
                 }
             }
-        }
+    }
 }
 </style>
