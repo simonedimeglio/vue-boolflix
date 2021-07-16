@@ -1,3 +1,4 @@
+
 <template>
     <header>
         <div class="header-container custom-container">
@@ -13,7 +14,7 @@
                 </ul>
             </div>
             <div class="header-options">
-                <input type="text" placeholder="Ricerca titolo">
+                <input type="text" v-model="search" @keyup.enter="$emit('search', search)" placeholder="Ricerca titolo">
                 <font-awesome-icon icon="search" class="button-icon"/>
             </div>
         </div>
@@ -23,6 +24,11 @@
 <script>
 export default {
     name: 'Header',
+    data() {
+        return {
+            search: ""
+        }
+    }
 }
 </script>
 

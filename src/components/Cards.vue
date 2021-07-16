@@ -16,16 +16,19 @@
 export default {
     name: 'Cards',
     props: {
+        img: String,
         title: String,
         originalTitle: String,
         language: String,
-        rating: String,
+        rating: Number,
     }
 }
 </script>
 
 <style scoped lang="scss">
 .card {
+    height: 450px;
+    margin-bottom: 20px;
     padding: 0 10px;
     &:hover .info {
             display: block;
@@ -35,7 +38,6 @@ export default {
             opacity: 0.5;
             transition: 0.5s;
         }
-
     .poster-container {
         position: relative;
         display: flex;
@@ -52,7 +54,7 @@ export default {
             font-size: 12px;
             padding: 10px;
             position: relative;
-            top: -50%;
+            bottom: 50%;
         }
 }
 </style>
