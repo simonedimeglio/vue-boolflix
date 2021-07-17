@@ -12,7 +12,7 @@
                 :rating="film.vote_average"
                 :searchBool="searchBool"
                 />
-                <Cards class="film-card" v-for="film in tvSeries"
+                <!-- <Cards class="film-card" v-for="film in tvSeries"
                 :key="film.id"
                 :title="film.title"
                 :img="film.poster_path"
@@ -20,7 +20,7 @@
                 :language="film.original_language"
                 :rating="film.vote_average"
                 :searchBool="searchBool"
-                />
+                /> -->
             </div>
         </div>
     </main>

@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     takeSearch(title) {
-      // Assegno a titleSearch l'argomento del method
+      // Assegno a titleSearch l'argomento del method tagliando gli spazi vuoti con trim()
       this.titleSearch = title.trim()
       // Creo le nuove APIs
       let filmsApi='https://api.themoviedb.org/3/search/movie?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805&query='
@@ -42,13 +42,14 @@ export default {
       filmsApi += this.titleSearch
       // Passo al mio method la nuova API
       this.createApi(filmsApi)
-
-
+      // Console.log del titolo che ricerco
+      console.log('Search by title: ' + title)
     },
     createApi(filmsApi){
       axios.get(filmsApi).then((result) => {
         this.results = result.data.results;
-        this.searchFilm('')
+        // Console.log della query attuale
+        console.log('Current query: ' + filmsApi)
       })
     },
     
@@ -64,6 +65,7 @@ export default {
           }
         });
         return check;
+        
       }
       // se il campo di ricerca è vuoto mostro i dati forniti da filmsApi
       if(this.titleSearch.length === 0) {

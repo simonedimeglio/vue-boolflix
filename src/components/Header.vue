@@ -15,7 +15,7 @@
             </div>
             <div class="header-options">
                 <input type="text" v-model="search" @keyup.enter="$emit('search', search)" placeholder="Ricerca titolo">
-                <font-awesome-icon icon="search" class="button-icon"/>
+                <font-awesome-icon icon="search" class="button-icon" @click="$emit('search', search)"/>
             </div>
         </div>
     </header>
