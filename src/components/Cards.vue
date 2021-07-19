@@ -9,13 +9,17 @@
         <div class="info">
             <div class="card-title">Titolo: {{title}}{{name}}</div>
             <div class="card-original-title">Titolo originale: {{originalTitle}}{{originalName}}</div>
+            <!-- MILESTONE 3 -->
             <div class="card-language">Lingua: 
                 <span>
                     <div v-if="this.language === 'undefined'">{{language}}</div>
                     <img v-else class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
                 </span>
             </div>
-            <div class="card-rating">Voto: {{rating}}</div>
+            <div class="card-rating">
+                <span>Voto: </span>
+                <div v-for="(rating, index) in ratingAverage" :key="index" class="card-rating"><i class="fas fa-star"></i></div>
+            </div>
         </div>
     </div>
 </template>
@@ -32,6 +36,11 @@ export default {
         language: String,
         rating: Number,
     },
+    data() {
+        return {
+            ratingAverage: Math.round(this.rating / 2)
+        }
+    }
 }
 </script>
 
@@ -73,6 +82,12 @@ export default {
                 .language-flag {
                     margin-left: 10px;
                     width: 20px;
+                }
+            }
+            .card-rating {
+                display: flex;
+                i {
+                    color: yellow
                 }
             }
     }

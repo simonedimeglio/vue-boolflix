@@ -15,6 +15,9 @@
             <div class="header-options">
                 <input type="text" v-model="search" @keyup.enter="$emit('search', search)" placeholder="Ricerca per titoli">
                 <i class="fas fa-search" @click="$emit('search', search)"/>
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-user"></i>
+                <i class="fas fa-sort-down"></i>
             </div>
         </div>
     </header>
@@ -65,12 +68,15 @@ header {
                 color: white;
                 border-bottom: .5px solid #e4e4e4;
             }
-            .fa-search {
-                margin-left: 10px;
+            i {
+                margin-left: 15px;
                 color: #e4e4e4;
                 &:hover {
                     color: white;
                     cursor: pointer;
+                }
+                &:last-child {
+                    margin-left: 2px;
                 }
             }
             

@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="custom-container">
-            <div class="title">ORIGINALI NETFLIX</div>
+            <div class="title">POPOLARI SU NETFLIX</div>
             <div class="films-container">
                 <Cards class="film-card" v-for="film in results"
                 :key="film.id"
