@@ -7,18 +7,24 @@
             <img v-else src="../assets/notfound.jpg" :alt="this.title + ' poster'">
         </div>
         <div class="info">
+            <!-- assegno dati dinamici sia per film che per serie tv -->
             <div class="card-title">Titolo: {{title}}{{name}}</div>
             <div class="card-original-title">Titolo originale: {{originalTitle}}{{originalName}}</div>
             <!-- MILESTONE 3 -->
             <div class="card-language">Lingua: 
                 <span>
-                    <div v-if="this.language === 'undefined'">{{language}}</div>
-                    <img v-else class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
+                    <img class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
                 </span>
             </div>
+            <!-- MILESTONE 4 -->
             <div class="card-rating">
                 <span>Voto: </span>
-                <div v-for="(rating, index) in ratingAverage" :key="index" class="card-rating"><i class="fas fa-star"></i></div>
+                <div v-if="this.rating < 1">
+                    <i class="far fa-star"></i>
+                </div>
+                <div v-else v-for="(rating, index) in ratingAverage" :key="index" class="card-rating">
+                    <i class="fas fa-star"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -45,6 +51,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../style/_colors.scss";
 .card {
     height: 450px;
     margin-bottom: 20px;
@@ -87,7 +94,8 @@ export default {
             .card-rating {
                 display: flex;
                 i {
-                    color: yellow
+                    margin-left: 5px;
+                    color: $rating-stars-color;
                 }
             }
     }

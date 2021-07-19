@@ -1,7 +1,6 @@
 <template>
     <main>
         <div class="custom-container">
-            <div class="title">POPOLARI SU NETFLIX</div>
             <div class="films-container">
                 <Cards class="film-card" v-for="film in results"
                 :key="film.id"
@@ -27,20 +26,13 @@ export default {
     },
     props: {
         results: Array,
-        searchBool: Boolean
     }
-    
 }
 </script>
 
 <style scoped lang="scss">
 main {
     .custom-container {
-        .title {
-            padding: 20px 0;
-            font-size: 20px;
-            font-weight: bold;
-        }
         .films-container {
             flex-wrap: wrap;
             display: flex;
