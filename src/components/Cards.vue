@@ -1,15 +1,18 @@
 <template>
     <div class="card">
         <div class="poster-container">
-            <img v-if="this.img !=null" :src="'https://image.tmdb.org/t/p/w342/' + this.img" :alt="this.title + ' poster'">
+            <!-- costruisco src tramite poster path con dimensione 500(w500) e conferisco dinamicità all'alt -->
+            <img v-if="this.img !=null" :src="'https://image.tmdb.org/t/p/w500/' + this.img" :alt="this.title + ' poster'">
+            <!-- assegno a alle card senza copertina una immagine di "backup" -->
             <img v-else src="../assets/notfound.jpg" :alt="this.title + ' poster'">
         </div>
         <div class="info">
-            <div class="card-title">Titolo: {{title}}</div>
-            <div class="card-original-title">Titolo originale: {{originalTitle}}</div>
+            <div class="card-title">Titolo: {{title}}{{name}}</div>
+            <div class="card-original-title">Titolo originale: {{originalTitle}}{{originalName}}</div>
             <div class="card-language">Lingua: 
                 <span>
-                    <img class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
+                    <div v-if="this.language === 'undefined'">{{language}}</div>
+                    <img v-else class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
                 </span>
             </div>
             <div class="card-rating">Voto: {{rating}}</div>
@@ -23,7 +26,9 @@ export default {
     props: {
         img: String,
         title: String,
+        name: String,
         originalTitle: String,
+        originalName: String,
         language: String,
         rating: Number,
     },

@@ -6,21 +6,13 @@
                 <Cards class="film-card" v-for="film in results"
                 :key="film.id"
                 :title="film.title"
+                :name="film.name"
+                :originalName="film.original_name"
                 :img="film.poster_path"
                 :originalTitle="film.original_title"
                 :language="film.original_language"
                 :rating="film.vote_average"
-                :searchBool="searchBool"
                 />
-                <!-- <Cards class="film-card" v-for="film in tvSeries"
-                :key="film.id"
-                :title="film.title"
-                :img="film.poster_path"
-                :originalTitle="film.original_title"
-                :language="film.original_language"
-                :rating="film.vote_average"
-                :searchBool="searchBool"
-                /> -->
             </div>
         </div>
     </main>
@@ -46,6 +38,8 @@ main {
     .custom-container {
         .title {
             padding: 20px 0;
+            font-size: 20px;
+            font-weight: bold;
         }
         .films-container {
             flex-wrap: wrap;

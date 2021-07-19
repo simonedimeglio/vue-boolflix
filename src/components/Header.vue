@@ -8,14 +8,13 @@
                     <li>Home</li>
                     <li>Serie Tv</li>
                     <li>Film </li>
-                    <li>Originali</li>
-                    <li>Aggiunti di recente</li>
+                    <li>Nuovi e popolari</li>
                     <li>La mia lista</li>
                 </ul>
             </div>
             <div class="header-options">
-                <input type="text" v-model="search" @keyup.enter="$emit('search', search)" placeholder="Ricerca titolo">
-                <font-awesome-icon icon="search" class="button-icon" @click="$emit('search', search)"/>
+                <input type="text" v-model="search" @keyup.enter="$emit('search', search)" placeholder="Ricerca per titoli">
+                <i class="fas fa-search" @click="$emit('search', search)"/>
             </div>
         </div>
     </header>
@@ -66,7 +65,7 @@ header {
                 color: white;
                 border-bottom: .5px solid #e4e4e4;
             }
-            .button-icon {
+            .fa-search {
                 margin-left: 10px;
                 color: #e4e4e4;
                 &:hover {
