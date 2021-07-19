@@ -69,7 +69,7 @@ header {
                 border-bottom: .5px solid #e4e4e4;
             }
             i {
-                margin-left: 15px;
+                margin-left: 10px;
                 color: #e4e4e4;
                 &:hover {
                     color: white;

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
+import Header from '@/components/Header.vue'
+import Main from '@/components/Main.vue'
 import axios from 'axios'
 
 export default {
@@ -39,7 +39,7 @@ export default {
         changePageTitle: false
     }
   },
-
+  
   created() {
     // this.createApi(this.filmsApi)
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805').then((results) => {
