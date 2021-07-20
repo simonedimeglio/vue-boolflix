@@ -30,6 +30,9 @@ export default {
 
         // Array per filtro serie tv
         tvSeries: [],
+
+        // Flag per rendere visibile o meno un elemento
+        flagVisibility: true
     }
   },
   
@@ -50,7 +53,7 @@ export default {
       // Mostro i film più popolari se il campo di ricerca è vuoto all'invio della ricerca
       if(title.length === 0){
       // Assegno a movies i dati salvati precedentemente in this.results
-        this.movies = this.results
+        this.flagVisibility = false
         return;
       }
 

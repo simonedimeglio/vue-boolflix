@@ -68,7 +68,6 @@ export default {
         
         img {
             height: 450px;
-            width: 100%;
             border-radius: 4px;
         }
     }

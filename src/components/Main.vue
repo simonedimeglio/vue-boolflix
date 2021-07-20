@@ -3,11 +3,11 @@
         <div class="custom-container">
             <div class="films-container">
                 
-                <div v-if="movies.length === 0 && tvSeries.length === 0" class="section">
-                    <div class="custom-row">
-                        <div class="results-title">
+                <div v-if="movies.length === 0 && tvSeries.length === 0 && !flagVisibility" class="section">
+                    <div class="results-title">
                             <h3>POPOLARI SU NETFLIX</h3>
-                        </div>
+                    </div>
+                    <div class="custom-row">
                         <Cards class="film-card" v-for="film in popular"
                             :key="film.id"
                             :title="film.title"
@@ -23,7 +23,8 @@
                     
 
                 <div v-else class="section">
-                    <div class="results-title">
+                    <div class="visibility-check" v-if="flagVisibility">
+                        <div class="results-title">
                             <h3>Film</h3>
                     </div>
                     <div class="custom-row">
@@ -56,6 +57,9 @@
                             :rating="film.vote_average"
                         />
                     </div>
+
+                    </div>
+                    
                     
                 </div>
                 
@@ -76,6 +80,7 @@ export default {
         popular: Array,
         movies: Array,
         tvSeries: Array,
+        flagVisibility: Boolean,
     }
 }
 </script>
@@ -89,9 +94,9 @@ main {
             .section {
                 .custom-row {
                     display: flex;
-                    .film-card {
-                        width: 500px;
-                    }
+                    flex-wrap: nowrap;
+                    width: 100%;
+                    overflow-x: scroll;
                 }
             }
             
