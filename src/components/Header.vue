@@ -3,7 +3,7 @@
     <header>
         <div class="header-container custom-container">
             <div class="header-logo-nav">
-                <img src="../assets/netflix-logo.png" alt="Netflix Logo" />
+                <img src="../assets/netflix-logo.svg" alt="Netflix Logo" />
                 <ul>
                     <li>Home</li>
                     <li>Serie Tv</li>
@@ -35,6 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../style/_colors.scss";
 header {
     .header-container {
         display: flex;
@@ -63,7 +64,7 @@ header {
         }
         .header-options {
             input {
-                background-color: black;
+                background-color: $main-bg-color;
                 border-style: none;
                 color: white;
                 border-bottom: .5px solid #e4e4e4;

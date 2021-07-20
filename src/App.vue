@@ -84,6 +84,16 @@ export default {
         console.log('Current query: ' + filmsApi)
       })
     },
+
+    // searchMovie() {
+    //   axios.get('https://api.themoviedb.org/3/search/movie?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805&query=').then((result) => {
+
+    //   })
+      
+    // },
+    // searchTv() {
+
+    // },
     
   },  
 }

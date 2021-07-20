@@ -3,7 +3,7 @@
         <div class="poster-container">
             <!-- costruisco src tramite poster path con dimensione 500(w500) e conferisco dinamicità all'alt -->
             <img v-if="this.img !=null" :src="'https://image.tmdb.org/t/p/w500/' + this.img" :alt="this.title + ' poster'">
-            <!-- assegno a alle card senza copertina una immagine di "backup" -->
+            <!-- assegno alle card senza copertina una immagine di "backup" -->
             <img v-else src="../assets/notfound.jpg" :alt="this.title + ' poster'">
         </div>
         <div class="info">
@@ -19,11 +19,9 @@
             <!-- MILESTONE 4 -->
             <div class="card-rating">
                 <span>Voto: </span>
-                <div v-if="this.rating < 1">
-                    <i class="far fa-star"></i>
-                </div>
-                <div v-else v-for="(rating, index) in ratingAverage" :key="index" class="card-rating">
-                    <i class="fas fa-star"></i>
+                <div class="card-rating">
+                    <!-- stelle dinamiche in base al rating dell'elemento -->
+                    <i v-for="n in 5" :key="n" class="fa-star" :class="n <= Math.round(rating / 2) ? 'fas': 'far'"></i>
                 </div>
             </div>
         </div>
@@ -42,11 +40,6 @@ export default {
         language: String,
         rating: Number,
     },
-    data() {
-        return {
-            ratingAverage: Math.round(this.rating / 2)
-        }
-    }
 }
 </script>
 
@@ -61,7 +54,7 @@ export default {
             opacity: 1;
         }
     &:hover .poster-container{
-            opacity: 0.2;
+            opacity: 0.1;
             transition: 0.5s;
         }
     .poster-container {
@@ -72,9 +65,11 @@ export default {
         align-items: center;
         width: 100%;
         height: 450px;
+        
         img {
             height: 450px;
             width: 100%;
+            border-radius: 4px;
         }
     }
     .info {
