@@ -1,27 +1,38 @@
 <template>
     <div class="card">
+
         <div class="poster-container">
-            <!-- costruisco src tramite poster path con dimensione 500(w500) e conferisco dinamicità all'alt -->
+            <!-- Build src through poster path with dimension 500 (w500) and I give dynamism to the alt -->
             <img v-if="this.img !=null" :src="'https://image.tmdb.org/t/p/w500/' + this.img" :alt="this.title + ' poster'">
-            <!-- assegno alle card senza copertina una immagine di "backup" -->
-            <img v-else src="../assets/notfound.jpg" :alt="this.title + ' poster'">
+            <!-- I assign a "backup" image to cards without cover -->
+            <img v-else src="../assets/notfound.jpg" :alt="this.title + ' poster'" class="not-found-img">
         </div>
+
         <div class="info">
-            <!-- assegno dati dinamici sia per film che per serie tv -->
-            <div class="card-title">Titolo: {{title}}{{name}}</div>
-            <div class="card-original-title">Titolo originale: {{originalTitle}}{{originalName}}</div>
+            <!-- I assign dynamic data for both films and TV seriesv -->
+            <div class="card-title info-item"><b>Title: </b>{{title}}{{name}}</div>
+            <div class="card-original-title info-item"><b>Original title: </b>{{originalTitle}}{{originalName}}</div>
             <!-- MILESTONE 3 -->
-            <div class="card-language">Lingua: 
+            <div class="card-language info-item"><b>Language: </b>
                 <span>
                     <img class="language-flag" :src="require('../assets/flags/' + this.language + '.svg')" alt="Language">
                 </span>
             </div>
             <!-- MILESTONE 4 -->
-            <div class="card-rating">
-                <span>Voto: </span>
+            <div class="card-rating-container info-item">
+                <span><b>Rating:</b></span>
                 <div class="card-rating">
-                    <!-- stelle dinamiche in base al rating dell'elemento -->
-                    <i v-for="n in 5" :key="n" class="fa-star" :class="n <= Math.round(rating / 2) ? 'fas': 'far'"></i>
+                    <!-- Dynamic stars based on the element rating -->
+                    <div v-if="this.voteCount === 0"> No review / rating</div>
+                    <i v-else v-for="n in 5" :key="n" class="fa-star" :class="n <= Math.round(rating / 2) ? 'fas': 'far'"></i>
+                </div>
+            </div>
+            <div class="overview info-item">
+                <div class="card-plot">
+                    <!-- Dynamic plot of movie / TV series -->
+                    <div v-if="this.overview.length > 500"><b>Plot</b>: <em>{{slicedOverview}}</em></div>
+                    <div v-else-if="this.overview.length < 1"><b>Plot</b>: <em>{{noOverview}}</em></div>
+                    <div v-else><b>Plot</b>: <em>{{overview}}</em></div>
                 </div>
             </div>
         </div>
@@ -38,7 +49,11 @@ export default {
         originalTitle: String,
         originalName: String,
         language: String,
+        overview: String,
+        slicedOverview: String,
+        noOverview: String,
         rating: Number,
+        voteCount: Number
     },
 }
 </script>
@@ -49,6 +64,7 @@ export default {
     height: 450px;
     margin-bottom: 20px;
     padding: 0 10px;
+    
     &:hover .info {
             display: block;
             opacity: 1;
@@ -65,6 +81,10 @@ export default {
         align-items: center;
         width: 100%;
         height: 450px;
+        overflow: hidden;
+        .not-found-img {
+            width: 300px;
+        }
         
         img {
             height: 450px;
@@ -73,10 +93,13 @@ export default {
     }
     .info {
             display: none;
-            font-size: 12px;
+            font-size: 14px;
             padding: 10px;
             position: relative;
-            bottom: 50%;
+            bottom: 100%;
+            .info-item{
+                margin: 5px 0;
+            }
             .card-language {
                 display: flex;
                 align-items: center;
@@ -85,11 +108,14 @@ export default {
                     width: 20px;
                 }
             }
-            .card-rating {
+            .card-rating-container {
                 display: flex;
-                i {
-                    margin-left: 5px;
-                    color: $rating-stars-color;
+                .card-rating {
+                    margin-left: 4px;
+                    i {
+                        margin-left: 5px;
+                        color: $rating-stars-color;
+                    }
                 }
             }
     }

@@ -21,53 +21,44 @@ export default {
         return {
         // Searchbar
         titleSearch: "",
-
-        // Array contenente film/serie più popolari
+        // Containing the most popular movies / series
         popular: [],
+        // For movie search
+        movies: null,
+        // For Tv Series search 
+        tvSeries: null,
 
-        // Array per filtro film
-        movies: [],
-
-        // Array per filtro serie tv
-        tvSeries: [],
-
-        // Flag per rendere visibile o meno un elemento
-        flagVisibility: true
     }
   },
   
   created() {
     // this.createApi(this.filmsApi)
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805').then((results) => {
-      // Assegno "definitivamente" a results
+      // "Definitely" assigns data to popular
       this.popular = results.data.results;
-      // Assegno "momentaneamente" a movies
-      // this.movies = results.data.results
     })
   },
   
   methods: {
     takeSearch(title) {
-      // Assegno a titleSearch l'argomento del method tagliando gli spazi vuoti con trim()
+      // I assign to titleSearch the argument of method by trimming blanks with trim()
       this.titleSearch = title.trim()
-      // Mostro i film più popolari se il campo di ricerca è vuoto all'invio della ricerca
-      if(title.length === 0){
-      // Assegno a movies i dati salvati precedentemente in this.results
-        this.flagVisibility = false
+      // I show popular movies if the search field is empty when submitting the search
+      if(title.length === 0){ 
         return;
       }
 
-      // Creo le nuove APIs
+      // New APIs
       let filmsApi='https://api.themoviedb.org/3/search/movie?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
       let seriesApi='https://api.themoviedb.org/3/search/tv?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
-      // Aggiungo la mia query
+      // Add query
       filmsApi += '&query=' + this.titleSearch
       seriesApi += '&query=' + this.titleSearch
-      // Passo al mio method le nuove APIs
+      // APIs's building
       this.createApi(filmsApi)
       this.createSeriesApi(seriesApi)
       
-      // Console.log del titolo che ricerco
+      // Console.log for debugging
       console.log('Search by title: ' + title)
     },
 
@@ -75,15 +66,16 @@ export default {
       axios.get(filmsApi).then((result) => {
         // Assegno a movies i dati relativi alla nuova query
         this.movies = result.data.results;
-        // Console.log della query
+        // Console.log for debugging
         console.log('Current movies query: ' + filmsApi)
       })
     },
+    
     createSeriesApi(seriesApi){
       axios.get(seriesApi).then((result) => {
-        // Assegno a movies i dati relativi alla nuova query
+        // tvSeries get results from new query
         this.tvSeries = result.data.results;
-        // Console.log della query
+        // Console.log for debugging
         console.log('Current tv series query: ' + seriesApi)
       })
     },
@@ -93,11 +85,4 @@ export default {
 
 <style lang="scss">
 @import "./style/app.scss";
-#app {
-  .results-title {
-            padding: 20px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-}
 </style>
