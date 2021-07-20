@@ -1,11 +1,7 @@
 <template>
   <div id="app">
-    <Header @search="takeSearch" />
-    <div class="results-title">
-      <div v-if="!changePageTitle" class="title">POPOLARI SU NETFLIX</div>
-      <div v-else>Ricerca per "{{titleSearch}}"</div>
-    </div>
-    <Main :results="filteredResults" />
+    <Header @search="[takeSearch($event), createApi($event), createSeriesApi($event)]" />
+    <Main :popular="popular" :movies="movies" :tvSeries="tvSeries"/>
   </div>
 </template>
 
@@ -26,17 +22,14 @@ export default {
         // Searchbar
         titleSearch: "",
 
-        // Array contenente i film più popolari
-        results: [],
+        // Array contenente film/serie più popolari
+        popular: [],
 
-        // Array contenente film/serie tv filtrate attraverso la searchbar
-        filteredResults: [],
+        // Array per filtro film
+        movies: [],
 
-        // Api's container
-        filmsApi: '',
-
-        // Check per il cambio del titolo "POPOLARI SU NETFLIX" all'avvio di una ricerca
-        changePageTitle: false
+        // Array per filtro serie tv
+        tvSeries: [],
     }
   },
   
@@ -44,9 +37,9 @@ export default {
     // this.createApi(this.filmsApi)
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805').then((results) => {
       // Assegno "definitivamente" a results
-      this.results = results.data.results;
-      // Assegno "momentaneamente" a filteredResults
-      this.filteredResults = results.data.results
+      this.popular = results.data.results;
+      // Assegno "momentaneamente" a movies
+      // this.movies = results.data.results
     })
   },
   
@@ -56,20 +49,20 @@ export default {
       this.titleSearch = title.trim()
       // Mostro i film più popolari se il campo di ricerca è vuoto all'invio della ricerca
       if(title.length === 0){
-      // Assegno a filteredResults i dati salvati precedentemente in this.results
-        this.filteredResults = this.results
-      // Mantengo o cambio nuovamente il titolo in "POPOLARI SU NETFLIX"
-        this.changePageTitle = false
-        return; // esco dall'if
+      // Assegno a movies i dati salvati precedentemente in this.results
+        this.movies = this.results
+        return;
       }
 
       // Creo le nuove APIs
-      let filmsApi='https://api.themoviedb.org/3/search/multi?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
-      
+      let filmsApi='https://api.themoviedb.org/3/search/movie?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
+      let seriesApi='https://api.themoviedb.org/3/search/tv?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
       // Aggiungo la mia query
       filmsApi += '&query=' + this.titleSearch
-      // Passo al mio method la nuova API
+      seriesApi += '&query=' + this.titleSearch
+      // Passo al mio method le nuove APIs
       this.createApi(filmsApi)
+      this.createSeriesApi(seriesApi)
       
       // Console.log del titolo che ricerco
       console.log('Search by title: ' + title)
@@ -77,24 +70,20 @@ export default {
 
     createApi(filmsApi){
       axios.get(filmsApi).then((result) => {
-        // Assegno a filteredResults i dati relativi alla nuova query
-        this.filteredResults = result.data.results;
-        this.changePageTitle = true
+        // Assegno a movies i dati relativi alla nuova query
+        this.movies = result.data.results;
         // Console.log della query
-        console.log('Current query: ' + filmsApi)
+        console.log('Current movies query: ' + filmsApi)
       })
     },
-
-    // searchMovie() {
-    //   axios.get('https://api.themoviedb.org/3/search/movie?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805&query=').then((result) => {
-
-    //   })
-      
-    // },
-    // searchTv() {
-
-    // },
-    
+    createSeriesApi(seriesApi){
+      axios.get(seriesApi).then((result) => {
+        // Assegno a movies i dati relativi alla nuova query
+        this.tvSeries = result.data.results;
+        // Console.log della query
+        console.log('Current tv series query: ' + seriesApi)
+      })
+    },
   },  
 }
 </script>

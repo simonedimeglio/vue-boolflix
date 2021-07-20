@@ -7,7 +7,7 @@
                 <ul>
                     <li>Home</li>
                     <li>Serie Tv</li>
-                    <li>Film </li>
+                    <li>Film</li>
                     <li>Nuovi e popolari</li>
                     <li>La mia lista</li>
                 </ul>

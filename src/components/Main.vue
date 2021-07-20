@@ -2,16 +2,64 @@
     <main>
         <div class="custom-container">
             <div class="films-container">
-                <Cards class="film-card" v-for="film in results"
-                :key="film.id"
-                :title="film.title"
-                :name="film.name"
-                :originalName="film.original_name"
-                :img="film.poster_path"
-                :originalTitle="film.original_title"
-                :language="film.original_language"
-                :rating="film.vote_average"
-                />
+                
+                <div v-if="movies.length === 0 && tvSeries.length === 0" class="section">
+                    <div class="custom-row">
+                        <div class="results-title">
+                            <h3>POPOLARI SU NETFLIX</h3>
+                        </div>
+                        <Cards class="film-card" v-for="film in popular"
+                            :key="film.id"
+                            :title="film.title"
+                            :name="film.name"
+                            :originalName="film.original_name"
+                            :img="film.poster_path"
+                            :originalTitle="film.original_title"
+                            :language="film.original_language"
+                            :rating="film.vote_average"
+                        />
+                    </div>
+                </div>
+                    
+
+                <div v-else class="section">
+                    <div class="results-title">
+                            <h3>Film</h3>
+                    </div>
+                    <div class="custom-row">
+                        
+                        <Cards class="film-card" v-for="film in movies"
+                            :key="film.id"
+                            :title="film.title"
+                            :name="film.name"
+                            :originalName="film.original_name"
+                            :img="film.poster_path"
+                            :originalTitle="film.original_title"
+                            :language="film.original_language"
+                            :rating="film.vote_average"
+                        />
+                    </div>
+                    
+                    <div class="results-title">
+                            <h3>Serie Tv</h3>
+                    </div>
+                    <div class="custom-row">
+                        
+                        <Cards class="film-card" v-for="film in tvSeries"
+                            :key="film.id"
+                            :title="film.title"
+                            :name="film.name"
+                            :originalName="film.original_name"
+                            :img="film.poster_path"
+                            :originalTitle="film.original_title"
+                            :language="film.original_language"
+                            :rating="film.vote_average"
+                        />
+                    </div>
+                    
+                </div>
+                
+                
             </div>
         </div>
     </main>
@@ -25,7 +73,9 @@ export default {
         Cards
     },
     props: {
-        results: Array,
+        popular: Array,
+        movies: Array,
+        tvSeries: Array,
     }
 }
 </script>
@@ -34,11 +84,17 @@ export default {
 main {
     .custom-container {
         .films-container {
-            flex-wrap: wrap;
             display: flex;
-            .film-card {
-                width: calc(100% / 5 - 20px);
+            flex-direction: column;
+            .section {
+                .custom-row {
+                    display: flex;
+                    .film-card {
+                        width: 500px;
+                    }
+                }
             }
+            
         }
     }
 }
