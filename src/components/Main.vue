@@ -4,14 +4,14 @@
             <div class="films-container">
 
                 <!-- POPULAR ON NETFLIX SECTION -->
-                <div class="popular-section section" v-if="!movies && !tvSeries || (movies.length === 0 && tvSeries.length === 0)">
+                <div class="popular-section section" v-if="(movies.length === 0 && tvSeries.length === 0)">
 
-                    <div class="results-title" v-if="!movies && !tvSeries">
-                        <span>POPULAR ON NETFLIX</span>
+                    <div class="results-title" v-if="startSearch">
+                        <span>NO RESULTS FOUND FOR YOUR SEARCH</span>
                     </div>
 
                     <div class="results-title" v-else>
-                        <span>No results found for your search</span>
+                        <span>POPULAR ON NETFLIX</span>
                     </div>
 
                     <div class="custom-row">
@@ -99,6 +99,7 @@ export default {
         popular: Array,
         movies: Array,
         tvSeries: Array,
+        startSearch: Boolean
     }
 }
 </script>

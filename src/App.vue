@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @search="[takeSearch($event), createApi($event), createSeriesApi($event)]" />
+    <Header @search="takeSearch($event)" />
     <Main :popular="popular" :movies="movies" :tvSeries="tvSeries"/>
   </div>
 </template>
@@ -24,9 +24,11 @@ export default {
         // Containing the most popular movies / series
         popular: [],
         // For movie search
-        movies: null,
+        movies: [],
         // For Tv Series search 
-        tvSeries: null,
+        tvSeries: [],
+        // Flag that testifies the start of searches (to change the phrase "POPULAR ON NETFLIX" into "NO RESULTS FOUND FOR YOUR SEARCH")
+        startSearch: false,
     }
   },
   
@@ -44,6 +46,8 @@ export default {
       this.titleSearch = title.trim()
       // I show popular movies if the search field is empty when submitting the search
       if(title.length === 0){ 
+        this.tvSeries = []
+        this.movies = []
         return;
       }
       // New APIs
@@ -55,6 +59,7 @@ export default {
       // APIs's building
       this.createApi(filmsApi)
       this.createSeriesApi(seriesApi)
+      this.startSearch = true
       // Console.log for debugging
       console.log('Search by title: ' + title)
     },
