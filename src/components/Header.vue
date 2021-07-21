@@ -2,6 +2,7 @@
 <template>
     <header>
         <div class="header-container custom-container">
+
             <div class="header-logo-nav">
                 <img src="../assets/netflix-logo.svg" alt="Netflix Logo" />
                 <ul>
@@ -12,6 +13,7 @@
                     <li>My List</li>
                 </ul>
             </div>
+
             <div class="header-options">
                 <input type="text" v-model="search" @keyup.enter="$emit('search', search)" placeholder="Search for movies and TV series">
                 <i class="fas fa-search" @click="$emit('search', search)"/>
@@ -19,6 +21,7 @@
                 <img src="../assets/avatar.png" class="user-avatar" alt="User Avatar">
                 <i class="fas fa-sort-down"></i>
             </div>
+
         </div>
     </header>
 </template>
@@ -36,6 +39,7 @@ export default {
 
 <style scoped lang="scss">
 @import "../style/_colors.scss";
+
 header {
     .header-container {
         display: flex;
@@ -54,9 +58,10 @@ header {
                     list-style: none;
                     padding: 0 5px;
                     font-size: 15px;
+                    color: white;
                     &:hover {
                         cursor: pointer;
-                        color: white;
+                        color: $main-txt-color;
                         transition: 0.3s;
                     }
                 }
@@ -66,25 +71,29 @@ header {
             display: flex;
             align-items: center;
             input {
-                width: 200px;
+                width: 250px;
+                font-size: 12px;
+                color: white;
                 background-color: $main-bg-color;
                 border-style: none;
-                color: $main-txt-color;
-                border-bottom: .5px solid $main-txt-color;
-                opacity: .8;
+                border-bottom: .5px solid white;
                 &:hover {
-                    opacity: 1;
+                    color: $main-txt-color;
+                    border-bottom-color: $main-txt-color;
+                    opacity: 0.8;
                 }
             }
             i {
                 margin:0 10px;
                 color: $main-txt-color;
+                transition: color 1s, transform .5s;
                 &:hover {
                     color: white;
                     cursor: pointer;
                 }
                 &:last-child {
                     margin-left: 2px;
+                    
                 }
             }
             .user-avatar {
@@ -98,7 +107,11 @@ header {
                     opacity: 1;
                 }
             }
-            
+            .fa-sort-down {
+                &:hover {
+                    transform: rotateX(180deg);
+                }
+            }
         }
     }
 }

@@ -2,85 +2,89 @@
     <main>
         <div class="custom-container">
             <div class="films-container">
-                <!-- v-if to solve two conditions: on startup where arrays are present and post-search where arrays are null  -->
-                <div v-if="!movies && !tvSeries || (movies.length === 0 && tvSeries.length === 0) " class="section">
-                    <div v-if="!movies && !tvSeries" class="results-title">
-                            <h3>POPULAR ON NETFLIX</h3>
+
+                <!-- POPULAR ON NETFLIX SECTION -->
+                <div class="popular-section section" v-if="!movies && !tvSeries || (movies.length === 0 && tvSeries.length === 0)">
+
+                    <div class="results-title" v-if="!movies && !tvSeries">
+                        <span>POPULAR ON NETFLIX</span>
                     </div>
-                    <div v-else>
-                        <h3>No results found for your search</h3>
+
+                    <div class="results-title" v-else>
+                        <span>No results found for your search</span>
                     </div>
+
                     <div class="custom-row">
-                        <Cards class="film-card" v-for="item in popular"
-                            :key="item.id"
+                        <Cards class="film-card" v-for="item in popular" :key="item.id"
+                            :img="item.poster_path"
                             :title="item.title"
+                            :originalTitle="item.original_title"
                             :name="item.name"
                             :originalName="item.original_name"
-                            :img="item.poster_path"
-                            :originalTitle="item.original_title"
                             :language="item.original_language"
+                            :rating="item.vote_average"
+                            :voteCount="item.vote_count"
                             :overview="item.overview"
                             :slicedOverview="item.overview.slice(0,500) + '...'"
                             :noOverview="item.overview + 'No Overview'"
-                            :rating="item.vote_average"
-                            :voteCount="item.vote_count"
                         />
                     </div>
-                </div>
+
+                </div> <!-- end popular section -->
                     
 
-                <div v-else class="section">
-                    <div class="visibility-check">
-                        <div class="results-title">
-                            <h3>Movie</h3>
-                        </div>
+                <!-- MOVIES AND TV SERIES SECTION -->
+                <div v-else class="movies-and-series-section section">
+                    
+                    <!-- Movies -->
+                    <div class="results-title" v-if="movies.length === 0">
+                        <span>NO MATCHES FOR MOVIES</span>
+                    </div>
+
+                    <div class="results-title" v-else>
+                        <span>MOVIES</span>
+                    </div>
+
                     <div class="custom-row">
-                        
-                        <Cards class="film-card" v-for="movie in movies"
-                            :key="movie.id"
-                            :title="movie.title"
-                            :name="movie.name"
-                            :originalName="movie.original_name"
+                        <Cards class="film-card" v-for="movie in movies" :key="movie.id"
                             :img="movie.poster_path"
+                            :title="movie.title"
                             :originalTitle="movie.original_title"
                             :language="movie.original_language"
                             :rating="movie.vote_average"
+                            :voteCount="movie.vote_count"
                             :overview="movie.overview"
                             :slicedOverview="movie.overview.slice(0,500) + '...'"
                             :noOverview="movie.overview + 'No Overview'"
-                            :voteCount="movie.vote_count"
                         />
                     </div>
                     
-                    <div class="results-title">
-                            <h3>Tv Series</h3>
+
+                    <!-- TV Series -->
+                    <div class="results-title" v-if="tvSeries.length === 0">
+                        <span>NO MATCHES FOR TV SERIES</span>
                     </div>
+
+                    <div class="results-title" v-else>
+                        <span>TV SERIES</span>
+                    </div>
+
                     <div class="custom-row">
-                        
-                        <Cards class="film-card" v-for="series in tvSeries"
-                            :key="series.id"
-                            :title="series.title"
+                        <Cards class="film-card" v-for="series in tvSeries" :key="series.id"
+                            :img="series.poster_path"
                             :name="series.name"
                             :originalName="series.original_name"
-                            :img="series.poster_path"
-                            :originalTitle="series.original_title"
                             :language="series.original_language"
                             :rating="series.vote_average"
+                            :voteCount="series.vote_count"
                             :overview="series.overview"
                             :slicedOverview="series.overview.slice(0,500) + '...'"
                             :noOverview="series.overview + 'No Overview'"
-                            :voteCount="series.vote_count"
                         />
                     </div>
-
-                    </div>
-                    
-                    
-                </div>
-                
-                
-            </div>
-        </div>
+                </div> <!-- end movies/tvseries section -->
+            </div> <!--end films-container -->
+        </div> <!--end custom-container -->
     </main>
 </template>
 
@@ -101,30 +105,35 @@ export default {
 
 <style scoped lang="scss">
 @import "../style/_colors.scss";
+
 main {
     ::-webkit-scrollbar {
     width: 10px;
     }
-
     ::-webkit-scrollbar-track {
     background: rgb(37, 37, 37);
     }
-    
     ::-webkit-scrollbar-thumb {
     background: $main-txt-color;
     opacity: .8;
     border-radius: 4px;
     }
-
     ::-webkit-scrollbar-thumb:hover {
-    background: white;
-    
+    background: white;    
     }
     .custom-container {
         .films-container {
             display: flex;
             flex-direction: column;
             .section {
+                
+                .results-title {
+                    margin: 40px 0 20px 10px;
+                    span {
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
                 .custom-row {
                     display: flex;
                     flex-wrap: nowrap;
@@ -132,7 +141,6 @@ main {
                     overflow-x: scroll;
                 }
             }
-            
         }
     }
 }

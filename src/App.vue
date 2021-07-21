@@ -6,9 +6,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Header from '@/components/Header.vue'
 import Main from '@/components/Main.vue'
-import axios from 'axios'
 
 export default {
   name: 'App',
@@ -19,7 +19,7 @@ export default {
 
   data() {
         return {
-        // Searchbar
+        // For Searchbar
         titleSearch: "",
         // Containing the most popular movies / series
         popular: [],
@@ -27,14 +27,13 @@ export default {
         movies: null,
         // For Tv Series search 
         tvSeries: null,
-
     }
   },
   
   created() {
     // this.createApi(this.filmsApi)
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805').then((results) => {
-      // "Definitely" assigns data to popular
+      // Assign "fixed" data to popular
       this.popular = results.data.results;
     })
   },
@@ -47,7 +46,6 @@ export default {
       if(title.length === 0){ 
         return;
       }
-
       // New APIs
       let filmsApi='https://api.themoviedb.org/3/search/movie?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
       let seriesApi='https://api.themoviedb.org/3/search/tv?api_key=fff24b8cc4bc6f6f4dc37aa7e30da805'
@@ -57,20 +55,21 @@ export default {
       // APIs's building
       this.createApi(filmsApi)
       this.createSeriesApi(seriesApi)
-      
       // Console.log for debugging
       console.log('Search by title: ' + title)
     },
 
+
     createApi(filmsApi){
       axios.get(filmsApi).then((result) => {
-        // Assegno a movies i dati relativi alla nuova query
+        // movies get results from new query
         this.movies = result.data.results;
         // Console.log for debugging
         console.log('Current movies query: ' + filmsApi)
       })
     },
     
+
     createSeriesApi(seriesApi){
       axios.get(seriesApi).then((result) => {
         // tvSeries get results from new query

@@ -45,25 +45,27 @@ export default {
     props: {
         img: String,
         title: String,
-        name: String,
         originalTitle: String,
+        name: String,
         originalName: String,
         language: String,
+        rating: Number,
+        voteCount: Number,
         overview: String,
         slicedOverview: String,
-        noOverview: String,
-        rating: Number,
-        voteCount: Number
+        noOverview: String
     },
 }
 </script>
 
 <style scoped lang="scss">
 @import "../style/_colors.scss";
+
 .card {
     height: 450px;
     margin-bottom: 20px;
     padding: 0 10px;
+    cursor: pointer;
     
     &:hover .info {
             display: block;
@@ -72,6 +74,7 @@ export default {
     &:hover .poster-container{
             opacity: 0.1;
             transition: 0.5s;
+            
         }
     .poster-container {
         position: relative;
@@ -92,32 +95,32 @@ export default {
         }
     }
     .info {
-            display: none;
-            font-size: 14px;
-            padding: 10px;
-            position: relative;
-            bottom: 100%;
-            .info-item{
+        display: none;
+        font-size: 14px;
+        padding: 10px;
+        position: relative;
+        bottom: 100%;
+        .info-item{
                 margin: 5px 0;
+        }
+        .card-language {
+            display: flex;
+            align-items: center;
+            .language-flag {
+                margin-left: 10px;
+                width: 20px;
             }
-            .card-language {
-                display: flex;
-                align-items: center;
-                .language-flag {
-                    margin-left: 10px;
-                    width: 20px;
+        }
+        .card-rating-container {
+            display: flex;
+            .card-rating {
+                margin-left: 4px;
+                i {
+                    margin-left: 5px;
+                    color: $rating-stars-color;
                 }
             }
-            .card-rating-container {
-                display: flex;
-                .card-rating {
-                    margin-left: 4px;
-                    i {
-                        margin-left: 5px;
-                        color: $rating-stars-color;
-                    }
-                }
-            }
+        }
     }
 }
 </style>
