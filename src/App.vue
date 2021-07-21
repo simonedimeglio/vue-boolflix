@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @search="takeSearch($event)" />
-    <Main :popular="popular" :movies="movies" :tvSeries="tvSeries"/>
+    <Main :popular="popular" :movies="movies" :tvSeries="tvSeries" :startSearch="startSearch"/>
   </div>
 </template>
 
@@ -48,6 +48,7 @@ export default {
       if(title.length === 0){ 
         this.tvSeries = []
         this.movies = []
+        this.startSearch = false
         return;
       }
       // New APIs

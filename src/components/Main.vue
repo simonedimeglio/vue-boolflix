@@ -5,13 +5,16 @@
 
                 <!-- POPULAR ON NETFLIX SECTION -->
                 <div class="popular-section section" v-if="(movies.length === 0 && tvSeries.length === 0)">
+                    
+                    <div class="results-title">
+                        <div v-if="startSearch">
+                            <span>NO RESULTS FOUND FOR YOUR SEARCH</span>
+                        </div>
+                    
 
-                    <div class="results-title" v-if="startSearch">
-                        <span>NO RESULTS FOUND FOR YOUR SEARCH</span>
-                    </div>
-
-                    <div class="results-title" v-else>
-                        <span>POPULAR ON NETFLIX</span>
+                        <div class="results-title" v-else>
+                            <span>POPULAR ON NETFLIX</span>
+                        </div>
                     </div>
 
                     <div class="custom-row">
