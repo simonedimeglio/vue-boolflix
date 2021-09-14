@@ -1,24 +1,6 @@
-# vue-boolflix
+![poster](https://user-images.githubusercontent.com/78272736/133293311-e6749087-cba8-486e-84db-c7b39324e02b.png)
 
-## Project setup
-```
-npm install
-```
+### -🔥 BOOLFLIX PROJECT 
+Project realized in VueJs. Replica inspired by the famous Netflix webapp
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<img width="1440" alt="Boolflix Project" src="https://user-images.githubusercontent.com/78272736/133293196-683add31-ae51-4b0d-bf48-7a59dc8e33f8.png">
